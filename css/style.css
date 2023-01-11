@@ -1,0 +1,31 @@
+*{
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    background-color: #eef9bf;
+    align-items: center;
+    
+
+}
+
+
+.game-tittle {
+    padding-top: 40px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    Font-size: 56px;
+    Line-height: 66px;
+    Line-height: 100%;
+    align-content: Left;
+    Vertical-align: Top;
+    letter-spacing: -0.4%;
+    color: #75B79E;
+}
+.container {
+    padding-top: 47px;
+    
+}
