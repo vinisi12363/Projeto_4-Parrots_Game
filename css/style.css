@@ -85,5 +85,7 @@ border-radius: 5px;
   }
 
   .card:hover .back-face {
+   
     transform: rotateY(-180deg);
+
   } 

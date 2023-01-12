@@ -54,11 +54,10 @@ function setVerse(){
     while (contCardId < quantCartas){
    
                 let card = document.getElementById(`card${contCardId}`);
-                let divVerso =document.createElement('div');
+                let divVerso = document.createElement('div');
                 divVerso.className="back-face";
                 divVerso.classList.add('face');
-                divVerso.style.background = "#a7e9af";
-                divVerso.style.border = "1px #96caa5 solid";
+                divVerso.setAttribute ("onClick","viraCards(this)"); // tem que setar um onclick aqui 
                 card.appendChild(divVerso);
                 setaImgVerse(divVerso); // vou  mandar as duas divs frente e verso para adicionar imagens
                 setFront(card, contCardId);
@@ -73,6 +72,7 @@ function setFront(card, contCardId){
          let divFrente = document.createElement('div');
         divFrente.className="front-face";
         divFrente.classList.add('face');
+        divFrente.id=`frente`;
         divFrente.style.background = "#a7e9af";
         divFrente.style.border = "1px #96caa5 solid";
         card.appendChild(divFrente);
@@ -98,7 +98,8 @@ function setaImgVerse(divVerso){
 function setaImgFront(divFrente , contador){
     
         var imgFrente = document.createElement('img');
-        imgFrente.src = `${setShuffle[contador]}`; //fazer uma função sort e chamar ela aqui  ela tem que retornar uma string 
+        imgFrente.setAttribute ('src',`${setShuffle[contador]}`);
+        imgFrente.id ="imgFrente";
         imgFrente.style.width = "100px";
         imgFrente.style.height = "100px";
         imgFrente.style.position = "relative";
@@ -115,7 +116,6 @@ caminhoImg.sort(randomizar);
 function randomizar() { 
 	return Math.random() - 0.5; 
 }
-console.log ("caminho img ARRAY : "+caminhoImg);
 
 function shuffleCards(){
     for (let i = 0; i < quantCartas/2; i++){
@@ -131,13 +131,35 @@ function shuffleCards(){
         [setShuffle[i],setShuffle[j]] = [setShuffle[j],setShuffle[i]];
     }
 
-    console.log("valor de set shuffle:"+setShuffle);
 }
 
+/*a treta ta aqui KKKKKK */
+function viraCards(divClicada) {  //vira cards onclick 
+   
+   let  imgSrc = document.getElementById("frente");
+   let imgTeste = imgSrc.getAttribute('src'); 
+    
+    
+       console.log("o src é:"+imgTeste);
+  
 
-function addNoArray(div) {
-    divArray.push(div);
+
+	//console.log(divFilha[1].src);
+
+
+
+    divClicada.classList.remove("back-face");
+ divClicada.classList.add("front-face");
+
+
+
+
+
+
+} 
+
+function comparaSRC (divClicada){
+
+
 
 }
-
-// tem que criar uma função que atribui uma imagem a div criada e  aloca num vetor global.
