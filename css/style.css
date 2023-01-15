@@ -96,7 +96,7 @@ body {
   right: 5px;
 
 }
-@media(max-width:416px){
+@media(max-width:417px){
   body{
     align-items: center; 
     justify-content: space-between;
