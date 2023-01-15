@@ -22,12 +22,9 @@ img{
    top: 24px;
    left:10px; 
 }
-
 .game-tittle {
     position:fixed;
     top: 40px;
-    
-    /*padding-top: 40px;*/
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     Font-size: 56px;
@@ -37,52 +34,52 @@ img{
     letter-spacing: -0.4%;
     color: #75B79E;
 }
-.container {
-    display: none;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content:  space-between;
-    width: 100%;
-    height: 100%;
-    padding-top: 47px;
-    background-color: red;
-    
-}
+
 .card{
-margin-top: 15px;
-margin-left: auto;
-position: relative;
-top:150px;
-width:117px;
-height:146px;
-border-radius: 5px;
+  margin-top: 15px;
+  margin-left: auto;
+  position: relative;
+  top:150px;
+  
+  width:117px;
+  height:146px;
+  
+  
+  border-radius: 5px;
+  box-sizing: border-box;
+  }
+  
+.virada {
+      width: 100%;
+      height: 100%;
+      background-color: #A7E9AF;
+      border-radius: 10px;
+      box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top:0px;
+      left:0px;
+      backface-visibility: visible;
+      transition: all .5s;
+      transform-style: preserve-3d;
 }
 
-.face {
-    width: 100%;
-    height: 100%;
-    background-color: #A7E9AF;
-    border-radius: 5px;
-    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    backface-visibility: hidden;
-    transition: all 0.3s linear;
-    transform-style: preserve-3d;
-  }
+.escondida{
 
-  .front-face {
-    transform: rotateY(180deg);
-  }
+  backface-visibility: hidden;
+}
 
-  .card:hover .front-face {
-    transform: rotateY(0deg);
-  }
 
-  .card:hover .back-face {
-   
-    transform: rotateY(-180deg);
+.back-face {
+  transform: rotateY(180deg);
+}
 
-  } 
+
+
+ .front-face {
+ 
+ 
+  transform: rotateY(-180deg);
+}

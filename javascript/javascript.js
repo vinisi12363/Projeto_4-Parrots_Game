@@ -1,5 +1,6 @@
 "use strict" 
-
+let acertos=0;
+let erros=0;
 let quantCartas;
 let srcArray = [];
 let contArray= 0;
@@ -7,7 +8,7 @@ let contCardId=0;
 let cont=0;
 let randomNumber=0;
 let setShuffle= [];
-
+let arrayDivClicada = [] ;
 let caminhoImg = new Array ("./img/bobrossparrot.gif",    // criando um vetor de locais de img
                            "./img/explodyparrot.gif",
                            "./img/fiestaparrot.gif",
@@ -27,9 +28,11 @@ let caminhoImg = new Array ("./img/bobrossparrot.gif",    // criando um vetor de
         break;
      }
 
- }
+}
+
 
 for(let cont=0;cont < quantCartas; cont++){
+
     document.addEventListener('DOMContentLoaded', function setarCard(){ 
        
         let div=document.createElement('div');
@@ -55,10 +58,10 @@ function setVerse(){
                 let card = document.getElementById(`card${contCardId}`);
                 let divVerso = document.createElement('div');
                 divVerso.className="back-face";
-                divVerso.classList.add('face');
-                divVerso.setAttribute ("onClick","viraCards(this)"); // tem que setar um onclick aqui 
+                divVerso.classList.add('virada');
+                divVerso.setAttribute ("onClick","viraCards(this)"); 
                 card.appendChild(divVerso);
-                setaImgVerse(divVerso); // vou  mandar as duas divs frente e verso para adicionar imagens
+                setaImgVerse(divVerso); 
                 setFront(card, contCardId);
                 contCardId++;
     }
@@ -66,12 +69,11 @@ function setVerse(){
 }
 
 function setFront(card, contCardId){
-         document.getElementById(`card${contCardId}`);     
         
-         let divFrente = document.createElement('div');
+        document.getElementById(`card${contCardId}`);      
+        let divFrente = document.createElement('div');
         divFrente.className="front-face";
-        divFrente.classList.add('face');
-        divFrente.id=`frente`;
+        divFrente.classList.add('escondida');
         divFrente.style.background = "#a7e9af";
         divFrente.style.border = "1px #96caa5 solid";
         card.appendChild(divFrente);
@@ -90,7 +92,7 @@ function setaImgVerse(divVerso){
      imgVerso.style.Left = "1px";
      imgVerso.style.objectFit="cover";
      divVerso.appendChild(imgVerso); 
-     contArray++;  // ?????? // 
+     contArray++; 
 
 }
 
@@ -128,41 +130,50 @@ function shuffleCards(){
 
 
 function viraCards(divClicada) { 
-  let img_SRC= divClicada.parentNode.querySelector('.front-face').querySelector('img').src; //pegando a  SRC DA img; 
-  
-  //TODO FAZER O ON CLICK AQ
-  
- divClicada.classList.remove("back-face");
- divClicada.classList.add("front-face");
-
- comparaSRC (img_SRC, divClicada);
-
-
+    arrayDivClicada.push(divClicada.parentNode.querySelector('.front-face').querySelector('img').src);
+        divClicada.classList.add("escondida");
+        divClicada.classList.remove("virada");
+        divClicada.parentNode.querySelector('.front-face').classList.add("virada");
+        divClicada.parentNode.querySelector('.front-face').classList.remove("escondida");
+   comparaSRC ();
 
 } 
 
-function comparaSRC (img_SRC,divClicada){
-    let flag = false;
-    srcArray.push(img_SRC);
-    if(srcArray.length > 1){
-        if(srcArray[0]===srcArray[1]) {
-          console.log("sao iguais");    
-            srcArray.splice(0, 1);  // removendo primeiro elemento da posição  zero 
-            srcArray.splice(0, 1);   // removendo o segundo elemento que agora esta na posicao zero
-            flag = true;
+function comparaSRC (){
+ 
+    if(arrayDivClicada.length === 2 ){
+
+        if (arrayDivClicada[0] === arrayDivClicada[1]){
+                acertos++;
+                arrayDivClicada.splice(0,1);
+                arrayDivClicada.splice(0,1);
+
         }
-    
+        else{
+                const cardVirada=document.querySelectorAll('div[class*="front-face virada"]');
+                const cardEscondida=document.querySelectorAll('div[class*="back-face escondida"]');
+                erros++; 
+            
+                setTimeout(() => {
+                cardVirada[0].classList.remove("virada");
+                cardVirada[0].classList.add("escondida");
+                cardVirada[1].classList.remove("virada");
+                cardVirada[1].classList.add("escondida");
 
+                cardEscondida[0].classList.add("virada");
+                cardEscondida[0].classList.remove("escondida");
+                cardEscondida[1].classList.add("virada");
+                cardEscondida[1].classList.remove("escondida");
+                }, 1000);
+                
 
-    }
+                arrayDivClicada.splice(0,1);
+                arrayDivClicada.splice(0,1);
+        
+        
+            
+        }     
+        
 
-    /// deixa as cartas viradas pra cima se flag for igual a true;
-
-
-    /// se as cartas forem diferentes ou flag for falso  vira pra baixo tudo .
-
-
-
-
-
+    } 
 }
