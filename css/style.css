@@ -17,34 +17,32 @@ body {
     box-sizing: border-box;
 
 }
-img{
-   position: relative;
-   top: 24px;
-   left:10px; 
-}
+
 .game-tittle {
-    position:fixed;
+    display: flex;
+    position:absolute;
     top: 40px;
+    left: 285px;
+    right: 285px;
+    z-index: 1;
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     Font-size: 56px;
     Line-height: 66px;
     Line-height: 100%;
     Vertical-align: Top;
-    letter-spacing: -0.4%;
     color: #75B79E;
 }
+
 
 .card{
   margin-top: 15px;
   margin-left: auto;
+  margin-right: auto;
   position: relative;
   top:150px;
-  
   width:117px;
   height:146px;
-  
-  
   border-radius: 5px;
   box-sizing: border-box;
   }
@@ -67,19 +65,61 @@ img{
 }
 
 .escondida{
-
+  position: relative;
   backface-visibility: hidden;
 }
 
 
 .back-face {
-  transform: rotateY(180deg);
+  transform: rotateY(0deg);
 }
 
 
 
  .front-face {
- 
- 
   transform: rotateY(-180deg);
+}
+
+
+.timer{
+  z-index: 1;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  Font-size: 36px;
+  background-color: red;
+  color: #75B79E;
+  width: 100%;
+  height: 100%;
+  position: sticky;
+  top: 40px;
+  
+  right: 5px;
+
+}
+@media(max-width:337px){
+  body{
+    align-items: center; 
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+
+  }
+  .game-tittle{
+    text-align: center;
+    width:312px;
+    position:absolute;
+    top: 40px;
+    left: 12px;
+    right: 12px;
+    font-size:36px;
+    line-height: 42.19px;
+  }
+  .card {
+    padding-top: 34px;
+    margin: 0 0 0 0;
+    margin-bottom: 34px;
+
+  }
 }
