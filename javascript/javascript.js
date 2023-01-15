@@ -141,18 +141,26 @@ function viraCards(divClicada) {
                 divClicada.parentNode.querySelector('.front-face').classList.add("virada");
                 divClicada.parentNode.querySelector('.front-face').classList.remove("escondida");
             
-                comparaSRC ();
+                compararSRC ();
 
 } 
 
-function comparaSRC (){
- 
+function compararSRC (){
+  
     if(arrayDivClicada.length === 2 ){
 
         if (arrayDivClicada[0] === arrayDivClicada[1]){
                 contCardVirado +=2;
                 acertos++;
-               
+                const cardVirado = document.querySelectorAll('div[class*="front-face virada"]');
+             
+                cardVirado[0].classList.add('encontrada');
+                cardVirado[0].parentNode.querySelector('div[class*="back-face escondida"]').removeAttribute("onclick");
+                
+
+                cardVirado[1].classList.add('encontrada');
+                cardVirado[1].parentNode.querySelector('div[class*="back-face escondida"]').removeAttribute("onclick");
+                
                 arrayDivClicada.splice(0,1);
                 arrayDivClicada.splice(0,1);
 
@@ -164,6 +172,7 @@ function comparaSRC (){
         else{
                 const cardVirada=document.querySelectorAll('div[class*="front-face virada"]');
                 const cardEscondida=document.querySelectorAll('div[class*="back-face escondida"]');
+                
                 erros++; 
             
                 setTimeout(() => {
