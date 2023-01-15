@@ -219,7 +219,8 @@ function finalizarJogo(){
 
 function cronometro(){
 
-        cronTime++;
-       console.log("cronometro"+cronTime); 
-
+       cronTime++;
+       document.getElementById("timer").innerText = `${cronTime}s`;
+       document.getElementById("timer").style.fontSize = "25px";
+     
 }

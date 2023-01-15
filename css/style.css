@@ -34,7 +34,6 @@ body {
     color: #75B79E;
 }
 
-
 .card{
   margin-top: 15px;
   margin-left: auto;
@@ -69,12 +68,9 @@ body {
   backface-visibility: hidden;
 }
 
-
 .back-face {
   transform: rotateY(0deg);
 }
-
-
 
  .front-face {
   transform: rotateY(-180deg);
@@ -86,25 +82,25 @@ body {
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
   Font-size: 36px;
-  background-color: red;
+  background-color: eef9bf;
   color: #75B79E;
   width: 100%;
   height: 100%;
-  position: sticky;
-  top: 40px;
-  
-  right: 5px;
+  position: fixed;
+  top:40px;
+  left:1100px;
 
 }
-@media(max-width:417px){
+
+@media(max-width:417px){ 
   body{
-    align-items: center; 
+    align-items: center;
+    justify-content: center; 
     justify-content: space-between;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     width: 100%;
-
   }
   .game-tittle{
     text-align: center;
@@ -120,6 +116,11 @@ body {
     padding-top: 34px;
     margin: 0 0 0 0;
     margin-bottom: 34px;
-
+  }
+  .timer {
+    position: fixed;
+    top:45px;
+    left:340px;
+    font-size: 18;
   }
 }
