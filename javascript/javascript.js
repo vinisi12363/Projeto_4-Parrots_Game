@@ -153,14 +153,12 @@ function compararSRC (){
                 contCardVirado +=2;
                 acertos++;
                 const cardVirado = document.querySelectorAll('div[class*="front-face virada"]');
-             
                 cardVirado[0].classList.add('encontrada');
+                cardVirado[0].id = "encontrada";
                 cardVirado[0].parentNode.querySelector('div[class*="back-face escondida"]').removeAttribute("onclick");
-                
-
                 cardVirado[1].classList.add('encontrada');
                 cardVirado[1].parentNode.querySelector('div[class*="back-face escondida"]').removeAttribute("onclick");
-                
+                cardVirado[1].id = "encontrada";
                 arrayDivClicada.splice(0,1);
                 arrayDivClicada.splice(0,1);
 
@@ -169,28 +167,34 @@ function compararSRC (){
                 }
 
         }
-        else{
-                const cardVirada=document.querySelectorAll('div[class*="front-face virada"]');
+        else{   
+
+                const cardVirada=document.querySelectorAll(".front-face.virada:not(.encontrada)");
                 const cardEscondida=document.querySelectorAll('div[class*="back-face escondida"]');
+          
+
+                    console.log (cardVirada);
                 
-                erros++; 
+                    erros++; 
             
-                setTimeout(() => {
-                cardVirada[0].classList.remove("virada");
-                cardVirada[0].classList.add("escondida");
-                cardVirada[1].classList.remove("virada");
-                cardVirada[1].classList.add("escondida");
+                    setTimeout(() => {
 
-                cardEscondida[0].classList.add("virada");
-                cardEscondida[0].classList.remove("escondida");
-                cardEscondida[1].classList.add("virada");
-                cardEscondida[1].classList.remove("escondida");
-                }, 1000);
+                 
+                    
+                    cardVirada[0].classList.remove("virada");
+                    cardVirada[0].classList.add("escondida");
+                    cardVirada[1].classList.remove("virada");
+                    cardVirada[1].classList.add("escondida");
+                    cardEscondida[0].classList.add("virada");
+                    cardEscondida[0].classList.remove("escondida");
+                    cardEscondida[1].classList.add("virada");
+                    cardEscondida[1].classList.remove("escondida");
+                    
+                    }, 1000);
                 
-
-                arrayDivClicada.splice(0,1);
-                arrayDivClicada.splice(0,1);
-        
+                    arrayDivClicada.splice(0,1);
+                    arrayDivClicada.splice(0,1);
+                
         
             
         }     
@@ -199,8 +203,9 @@ function compararSRC (){
 }
 
 function finalizarJogo(){
-    alert (`Você ganhou em ${contJogadas} jogadas! no tempo de ${cronTime} segundos`);
-    debugger;
+    setTimeout(() => {alert (`Você ganhou em ${contJogadas} jogadas! no tempo de ${cronTime-2} segundos`);
+    
+    
     let resposta;
     while(resposta !=="sim" || resposta !== "não"){
              resposta=prompt("Deseja jogar novamente ? (responda: sim ou não)");
@@ -214,7 +219,7 @@ function finalizarJogo(){
     }else{
              alert("Obrigado por jogar o Parrots Game.");
     }
-
+}, 2000);
 }
 
 function cronometro(){
